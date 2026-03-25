@@ -6,7 +6,7 @@
 
 [package]
 name = "dravr-riviere-mcp"
-version = "0.1.0"
+version = "0.0.0"
 edition = "2021"
 license = "Apache-2.0"
 description = "MCP server for dravr-riviere time-series engine — expose storage via Model Context Protocol"
@@ -25,7 +25,7 @@ name = "dravr-riviere-mcp"
 path = "src/main.rs"
 
 [dependencies]
-dravr-riviere = { path = "../..", version = "0.1.0" }
+dravr-riviere = { path = "../..", version = "0.0.0" }
 dravr-tronc = "0.1.0"
 clap = { version = "4", features = ["derive"] }
 tokio = { version = "1", features = ["full"] }

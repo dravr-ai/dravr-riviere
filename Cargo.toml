@@ -9,7 +9,7 @@ members = [".", "crates/dravr-riviere-mcp", "crates/dravr-riviere-server"]
 
 [package]
 name = "dravr-riviere"
-version = "0.1.0"
+version = "0.0.0"
 edition = "2021"
 license = "Apache-2.0"
 description = "Time-series storage engine — Postgres-backed metric persistence, windowed aggregation, and range queries"
@@ -18,7 +18,6 @@ homepage = "https://github.com/dravr-ai/dravr-riviere"
 readme = "README.md"
 keywords = ["timeseries", "metrics", "storage", "fitness", "health"]
 categories = ["database", "science"]
-publish = false
 
 # ============================================================================
 # Build Profiles
