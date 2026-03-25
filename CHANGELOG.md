@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.0] — 2026-03-25
+
+### Added
+
+- feat: initial scaffold — time-series storage engine with trait-based store 3 workspace crates (core, MCP, server), 107 SeriesType variants, 24 tests
+
+
+
 ## [0.1.0] - 2026-03-24
 
 ### Added
