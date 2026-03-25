@@ -21,7 +21,7 @@ Postgres-backed time-series storage engine for health and fitness metrics. Provi
 
 ```toml
 [dependencies]
-dravr-riviere = "0.1"
+dravr-riviere = "0.2"
 ```
 
 ```rust
