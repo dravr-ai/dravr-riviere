@@ -9,7 +9,7 @@ members = [".", "crates/dravr-riviere-mcp", "crates/dravr-riviere-server"]
 
 [package]
 name = "dravr-riviere"
-version = "0.2.0"
+version = "0.2.1"
 edition = "2021"
 license = "Apache-2.0"
 description = "Time-series storage engine — Postgres-backed metric persistence, windowed aggregation, and range queries"

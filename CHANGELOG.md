@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.2.1] — 2026-03-26
+
+### Fixed
+
+- fix: pin dravr-tronc to 0.1 (release workflow incorrectly bumped external dep)
+
+### Other
+
+- deps: bump dravr-tronc to 0.2 with error notification support
+- deps: bump dravr-tronc to 0.2 with error notification support
+
+
+
 ## [0.2.0] — 2026-03-25
 
 
