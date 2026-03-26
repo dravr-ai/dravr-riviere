@@ -61,9 +61,10 @@ jobs:
           # Update root crate version (first occurrence only)
           sed -i "0,/^version = \"${CURRENT}\"/s//version = \"${VERSION}\"/" Cargo.toml
 
-          # Update subcrate package versions
-          sed -i "s/^version = \"[0-9]*\.[0-9]*\.[0-9]*\"/version = \"${VERSION}\"/" crates/dravr-riviere-mcp/Cargo.toml
-          sed -i "s/^version = \"[0-9]*\.[0-9]*\.[0-9]*\"/version = \"${VERSION}\"/" crates/dravr-riviere-server/Cargo.toml
+          # Update subcrate package versions (only the [package] version line)
+          # Uses sed address range: match from [package] to next blank/section line
+          sed -i '/^\[package\]/,/^\[/{s/^version = "[0-9]*\.[0-9]*\.[0-9]*"/version = "'"${VERSION}"'"/}' crates/dravr-riviere-mcp/Cargo.toml
+          sed -i '/^\[package\]/,/^\[/{s/^version = "[0-9]*\.[0-9]*\.[0-9]*"/version = "'"${VERSION}"'"/}' crates/dravr-riviere-server/Cargo.toml
 
           # Update dependency version references in subcrates
           sed -i "s/dravr-riviere = { path = \"\.\.\/\.\.\", version = \"[^\"]*\"/dravr-riviere = { path = \"\.\.\/\.\.\", version = \"${VERSION}\"/" crates/dravr-riviere-mcp/Cargo.toml
