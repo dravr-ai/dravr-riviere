@@ -1,18 +1,5 @@
 ## Git Workflow: NO Pull Requests
 
-
-## Mandatory Session Setup (ALL AI Agents)
-
-**Run these commands at the START OF EVERY SESSION:**
-
-```bash
-# 1. Initialize shared build config (required for validation)
-git submodule update --init --recursive
-
-# 2. Set git hooks
-git config core.hooksPath .build/hooks
-```
-
 ## Mandatory Pre-Push Validation
 
 **Before EVERY push, run:**
@@ -104,49 +91,6 @@ tests/
 - **SeriesType enum** -- 90+ health/fitness metrics following Open Wearables ID ranges
 - **Workspace crates** -- MCP server and REST API server are separate crates via dravr-tronc
 
-## Git Hooks - MANDATORY for ALL AI Agents
-
-**MANDATORY - Run this at the START OF EVERY SESSION:**
-```bash
-git config core.hooksPath .githooks
-```
-This enables pre-commit, commit-msg, and pre-push hooks. Sessions get archived/revived, so this must run EVERY time you start working, not just once.
-
-**NEVER use `--no-verify` when committing or pushing.** The hooks enforce:
-- SPDX license headers on all source files
-- Commit message format (max 2 lines, conventional commits)
-- No AI-generated commit signatures
-- No unauthorized root markdown files
-
-## Pre-Push Validation Workflow
-
-The pre-push hook uses a **marker-based validation** to avoid SSH timeout issues.
-
-### Workflow
-
-1. **Make your changes and commit**
-2. **Run validation before pushing:**
-   ```bash
-   ./scripts/pre-push-validate.sh
-   ```
-   On success, creates `.git/validation-passed` marker (valid for 15 minutes).
-
-3. **Push:**
-   ```bash
-   git push
-   ```
-
-### Important Notes
-
-- If validation expires or commit changes, re-run `./scripts/pre-push-validate.sh`
-- To bypass (NOT RECOMMENDED): `git push --no-verify`
-
-### NEVER
-
-- Manually create `.git/validation-passed` marker
-- Skip validation by creating a fake marker -- CI will catch issues
-- Claim "rustfmt isn't installed" or similar excuses to bypass validation
-
 ### CI Monitoring
 
 Use the first available method. **NEVER ask the user for a GitHub token** -- fall back instead.
@@ -226,40 +170,13 @@ Mocks are permitted ONLY in test code for:
 - Testing error conditions that are difficult to reproduce
 - Simulating network failures or timeout scenarios
 
-## Required Pre-Commit Validation
+### Tiered Validation (During Development)
 
-### Tiered Validation Approach
-
-#### Tier 1: Quick Iteration (during development)
-```bash
-# 1. Format code
-cargo fmt
-
-# 2. Compile check only
-cargo check --quiet
-
-# 3. Run targeted tests
-cargo test <test_name_pattern> -- --nocapture
-```
-
-#### Tier 2: Pre-Commit (before committing)
-```bash
-# 1. Format code
-cargo fmt
-
-# 2. Clippy with CI-matching strictness (warnings = errors)
-RUSTFLAGS=-Dwarnings cargo clippy --all-targets -- -D warnings
-
-# 3. Run targeted tests
-cargo test <test_pattern> -- --nocapture
-```
-
-#### Tier 3: Full Validation (before merge)
-```bash
-cargo fmt
-RUSTFLAGS=-Dwarnings cargo clippy --all-targets -- -D warnings
-cargo test
-```
+| Tier | When | Commands |
+|------|------|----------|
+| Quick | During dev iteration | `cargo check --quiet && cargo test <pattern>` |
+| Pre-commit | Before each commit | `cargo fmt --all && RUSTFLAGS=-Dwarnings cargo clippy --all-targets -- -D warnings` |
+| Full | Before push (see above) | `cargo fmt + clippy + .build/validation/validate.sh` |
 
 ### Test Output Verification - MANDATORY
 
