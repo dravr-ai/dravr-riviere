@@ -201,7 +201,7 @@ jobs:
           Compress-Archive -Path "$DIR/*" -DestinationPath "${DIR}.zip"
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: dravr-riviere-${{ matrix.target }}
           path: dravr-riviere-v*.*
