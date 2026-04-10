@@ -4,6 +4,8 @@
 // SPDX-License-Identifier: Apache-2.0
 // Copyright (c) 2026 dravr.ai
 
+use std::cmp::Ordering;
+
 use chrono::{DateTime, Duration, TimeZone, Utc};
 
 use dravr_riviere::DataPoint;
@@ -63,7 +65,7 @@ fn points_with_same_timestamp_are_equal_in_ordering() {
     let b = DataPoint::new(ts, 999.0);
 
     // Ord is defined only on timestamp, so these compare as equal
-    assert_eq!(a.cmp(&b), std::cmp::Ordering::Equal);
+    assert_eq!(a.cmp(&b), Ordering::Equal);
 }
 
 #[test]
@@ -74,8 +76,8 @@ fn partial_cmp_consistent_with_cmp() {
     let a = DataPoint::new(t1, 1.0);
     let b = DataPoint::new(t2, 2.0);
 
-    assert_eq!(a.partial_cmp(&b), Some(std::cmp::Ordering::Less));
-    assert_eq!(b.partial_cmp(&a), Some(std::cmp::Ordering::Greater));
+    assert_eq!(a.partial_cmp(&b), Some(Ordering::Less));
+    assert_eq!(b.partial_cmp(&a), Some(Ordering::Greater));
 }
 
 #[test]

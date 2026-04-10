@@ -4,6 +4,8 @@
 // SPDX-License-Identifier: Apache-2.0
 // Copyright (c) 2026 dravr.ai
 
+use std::result::Result as StdResult;
+
 /// Errors produced by the riviere time-series storage engine.
 #[derive(Debug, thiserror::Error)]
 pub enum RiviereError {
@@ -46,4 +48,4 @@ pub enum RiviereError {
 }
 
 /// Convenience alias used throughout the crate.
-pub type Result<T> = std::result::Result<T, RiviereError>;
+pub type Result<T> = StdResult<T, RiviereError>;

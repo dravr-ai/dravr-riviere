@@ -4,6 +4,8 @@
 // SPDX-License-Identifier: Apache-2.0
 // Copyright (c) 2026 dravr.ai
 
+use std::cmp::min;
+
 use chrono::{DateTime, Duration, Utc};
 use serde::{Deserialize, Serialize};
 
@@ -59,7 +61,7 @@ pub fn aggregate_windows(
     let mut window_start = range_start;
 
     while window_start < range_end {
-        let window_end = std::cmp::min(window_start + window_duration, range_end);
+        let window_end = min(window_start + window_duration, range_end);
 
         let window_points: Vec<&DataPoint> = points
             .iter()

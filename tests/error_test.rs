@@ -4,6 +4,9 @@
 // SPDX-License-Identifier: Apache-2.0
 // Copyright (c) 2026 dravr.ai
 
+use std::error::Error;
+use std::hint::black_box;
+
 use dravr_riviere::RiviereError;
 
 // ── SeriesNotFound ───────────────────────────────────────────────────────
@@ -124,7 +127,7 @@ fn storage_error_display_format() {
 
 #[test]
 fn all_variants_implement_error_trait() {
-    let errors: Vec<Box<dyn std::error::Error>> = vec![
+    let errors: Vec<Box<dyn Error>> = vec![
         Box::new(RiviereError::SeriesNotFound {
             source_id: "x".to_owned(),
             series_type: 1,
@@ -208,7 +211,7 @@ fn all_variants_implement_debug() {
 #[test]
 fn result_type_alias_accepts_ok_variant() {
     // Verify the Result alias accepts Ok values via pattern match
-    let result: dravr_riviere::Result<i32> = std::hint::black_box(Ok(42));
+    let result: dravr_riviere::Result<i32> = black_box(Ok(42));
     match result {
         Ok(val) => assert_eq!(val, 42),
         Err(e) => panic!("Expected Ok, got Err: {e}"),
@@ -218,7 +221,7 @@ fn result_type_alias_accepts_ok_variant() {
 #[test]
 fn result_type_alias_accepts_err_variant() {
     let result: dravr_riviere::Result<i32> =
-        std::hint::black_box(Err(RiviereError::UnknownSeriesType { id: 0 }));
+        black_box(Err::<i32, _>(RiviereError::UnknownSeriesType { id: 0 }));
     match result {
         Ok(val) => panic!("Expected Err, got Ok({val})"),
         Err(e) => assert!(e.to_string().contains('0')),
