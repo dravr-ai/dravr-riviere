@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.3] — 2026-04-10
+
+### Other
+
+- build: reduce tokio feature footprint to minimal set
+
+
+
 ## [0.2.2] — 2026-03-31
 
 
