@@ -142,7 +142,7 @@ fn from_id_round_trip_for_every_variant() {
     for st in ALL_SERIES_TYPES {
         let id = st.id();
         let recovered = SeriesType::from_id(id);
-        assert_eq!(recovered, Some(*st), "from_id({id}) should return {st:?}",);
+        assert_eq!(recovered, Some(*st), "from_id({id}) should return {st:?}");
     }
 }
 
@@ -152,7 +152,7 @@ fn from_id_round_trip_for_every_variant() {
 fn as_str_returns_snake_case_for_every_variant() {
     for st in ALL_SERIES_TYPES {
         let name = st.as_str();
-        assert!(!name.is_empty(), "as_str() for {st:?} should not be empty",);
+        assert!(!name.is_empty(), "as_str() for {st:?} should not be empty");
         // Snake case: only lowercase letters, digits, and underscores
         assert!(
             name.chars()
@@ -174,7 +174,7 @@ fn no_duplicate_ids() {
     let mut seen = HashSet::new();
     for st in ALL_SERIES_TYPES {
         let id = st.id();
-        assert!(seen.insert(id), "Duplicate ID {id} found for {st:?}",);
+        assert!(seen.insert(id), "Duplicate ID {id} found for {st:?}");
     }
 }
 
