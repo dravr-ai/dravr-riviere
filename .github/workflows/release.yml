@@ -206,6 +206,7 @@ jobs:
         with:
           name: dravr-riviere-${{ matrix.target }}
           path: dravr-riviere-v*.*
+          retention-days: 7
 
   docker:
     name: Docker Image
