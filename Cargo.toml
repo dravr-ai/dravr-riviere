@@ -12,6 +12,9 @@ name = "dravr-riviere"
 version = "0.2.3"
 edition = "2021"
 license = "Apache-2.0"
+# Private crate — never publish to public crates.io (matches the rest of the
+# dravr fleet). The missing guard here leaked 0.2.0/0.2.1 publicly.
+publish = false
 description = "Time-series storage engine — Postgres-backed metric persistence, windowed aggregation, and range queries"
 repository = "https://github.com/dravr-ai/dravr-riviere"
 homepage = "https://github.com/dravr-ai/dravr-riviere"

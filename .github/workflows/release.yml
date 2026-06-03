@@ -246,21 +246,9 @@ jobs:
 
       - uses: dtolnay/rust-toolchain@stable
 
-      - name: Publish to crates.io
-        env:
-          CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
-        run: |
-          cargo publish -p dravr-riviere || echo "dravr-riviere already published, continuing..."
-
-          echo "Waiting for crates.io to index dravr-riviere..."
-          sleep 30
-
-          cargo publish -p dravr-riviere-mcp || echo "dravr-riviere-mcp already published, continuing..."
-
-          echo "Waiting for crates.io to index dravr-riviere-mcp..."
-          sleep 30
-
-          cargo publish -p dravr-riviere-server || echo "dravr-riviere-server already published, continuing..."
+      # crates.io publishing removed: dravr-riviere is a private crate
+      # (`publish = false`). It must never reach the public registry — the
+      # previous step here leaked 0.2.0/0.2.1.
 
       - name: Download all artifacts
         uses: actions/download-artifact@v4
