@@ -1,7 +1,7 @@
 # ABOUTME: Multi-stage Docker build for dravr-riviere-server and dravr-riviere-mcp binaries
 # ABOUTME: Lightweight runtime without development dependencies
 
-FROM rust:1-bookworm AS builder
+FROM rust:1.96-bookworm AS builder
 WORKDIR /build
 COPY . .
 RUN cargo build --release -p dravr-riviere-server -p dravr-riviere-mcp
