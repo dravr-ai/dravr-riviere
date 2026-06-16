@@ -31,7 +31,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: dtolnay/rust-toolchain@1.96.0
+      - uses: dtolnay/rust-toolchain@1.100.0
 
       - name: Configure git
         run: |
@@ -169,7 +169,7 @@ jobs:
         with:
           ref: v${{ needs.version.outputs.version }}
 
-      - uses: dtolnay/rust-toolchain@1.96.0
+      - uses: dtolnay/rust-toolchain@1.100.0
         with:
           targets: ${{ matrix.target }}
 
@@ -244,7 +244,7 @@ jobs:
         with:
           ref: v${{ needs.version.outputs.version }}
 
-      - uses: dtolnay/rust-toolchain@1.96.0
+      - uses: dtolnay/rust-toolchain@1.100.0
 
       # crates.io publishing removed: dravr-riviere is a private crate
       # (`publish = false`). It must never reach the public registry — the
