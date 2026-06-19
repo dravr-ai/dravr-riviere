@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.4] — 2026-06-19
+
+### Changed
+
+- deps: migrate `dravr-riviere-mcp` and `dravr-riviere-server` to dravr-tronc
+  0.5.3 (dual-era MCP engine); state is `Arc<S>` directly (tronc no longer wraps
+  it in a `RwLock`). The core `dravr-riviere` crate is unchanged.
+
 ## [0.2.3] — 2026-04-10
 
 ### Other
